@@ -32,6 +32,7 @@ namespace ForgingAhead.Controllers
 
     public IActionResult Index()
     {
+      ViewData["Title"] = "Equipment";
       var model = _context.Equipment.ToList(); 
       return View();
     }

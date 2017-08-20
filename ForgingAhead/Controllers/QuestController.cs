@@ -37,6 +37,7 @@ namespace ForgingAhead.Controllers
     }
     public IActionResult Details(string name)
     {
+      ViewData["Title"] = "Quests";
       var model = _context.Quests.FirstOrDefault(e => e.Name == name);
       return View(model);
     }
