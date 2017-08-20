@@ -6,4 +6,6 @@
 <form asp-action="Update" asp-controller="Quest">
     @Html.EditorForModel()
     <input type="submit" value="Update" class="btn btn-default" />    
+    //List Validation errors here
+    <div asp-validation-summary="All"></div>
 </form>
