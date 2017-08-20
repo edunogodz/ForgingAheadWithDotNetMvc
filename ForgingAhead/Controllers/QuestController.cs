@@ -27,46 +27,46 @@ namespace ForgingAhead.Controllers
     {
       _context.Quests.Add(quest);
       _context.SaveChanges();
+
       return RedirectToAction("Index");
     }
-
+    
+    [HttpGet]
     public IActionResult Index()
     {
-      var model = _context.Quests.ToList(); 
+      ViewData["Title"] = "Quests";
+      var model = _context.Quests.ToList();
       return View(model);
     }
+
+    [Route("Quest/{name}/Details")]
     public IActionResult Details(string name)
     {
-      ViewData["Title"] = "Quests";
       var model = _context.Quests.FirstOrDefault(e => e.Name == name);
       return View(model);
     }
 
+    [Route("Quest/{name}/Edit")]
+    public IActionResult Edit(string name)
+    {
+      var model = _context.Quests.FirstOrDefault(e => e.Name == name);
+      return View(model);
+    }
+
+    [HttpPost]
     public IActionResult Update(Quest quest)
     {
-       _context.Entry(quest).State = EntityState.Modified;
-       _context.SaveChanges();      
+      _context.Entry(quest).State = EntityState.Modified;
+      _context.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public IActionResult Delete(string name)
     {
-      var original = _context.Quests.FirstOrDefault(e => e.Name == name);
-            if (original != null)
-            {
-                _context.Quests.Remove(original);
-                _context.SaveChanges();
-            
-            }
-      
+      var quest = _context.Quests.FirstOrDefault(e => e.Name == name);
+      _context.Quests.Remove(quest);
+      _context.SaveChanges();
       return RedirectToAction("Index");
     }
-
-
-
-
-
-
-
   }
 }

@@ -16,6 +16,7 @@ namespace ForgingAhead.Controllers
             _context = context;
         }
 
+        [HttpPost]
         public IActionResult Create(Character character)
         {
             _context.Characters.Add(character);
@@ -23,6 +24,7 @@ namespace ForgingAhead.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             ViewData["Title"] = "Characters";
@@ -54,6 +56,7 @@ namespace ForgingAhead.Controllers
             return View(model);
         }
 
+        [HttpPost]
         public IActionResult Update(Character character)
         {
             _context.Entry(character).State = EntityState.Modified;
@@ -62,6 +65,7 @@ namespace ForgingAhead.Controllers
         }
 
         //Delete
+        [HttpPost]
         [Route("Character/{name}/Delete")]
         public IActionResult Delete(string name)
         {
